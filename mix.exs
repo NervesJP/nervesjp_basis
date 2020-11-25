@@ -23,7 +23,7 @@ defmodule NervesjpBasis.MixProject do
   def application do
     [
       mod: {NervesjpBasis.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :inets]
     ]
   end
 
