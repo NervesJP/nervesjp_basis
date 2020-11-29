@@ -50,7 +50,7 @@ config :nerves_ssh,
 # Configure the network using vintage_net
 # See https://github.com/nerves-networking/vintage_net for more information
 config :vintage_net,
-  regulatory_domain: "US",
+  regulatory_domain: "JP",
   config: [
     {"usb0", %{type: VintageNetDirect}},
     {"eth0",

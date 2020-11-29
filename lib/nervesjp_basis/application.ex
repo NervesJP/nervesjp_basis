@@ -6,6 +6,10 @@ defmodule NervesjpBasis.Application do
   use Application
 
   def start(_type, _args) do
+    if should_start_wizard?() do
+      VintageNetWizard.run_wizard()
+    end
+
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: NervesjpBasis.Supervisor]
@@ -39,5 +43,15 @@ defmodule NervesjpBasis.Application do
 
   def target() do
     Application.get_env(:nervesjp_basis, :target)
+  end
+
+  defp should_start_wizard?() do
+    pin_number = Application.get_env(:nervesjp_basis, :wizard_start_gpio_pin, 5)
+
+    with {:ok, gpio} <- Circuits.GPIO.open(pin_number, :input) do
+      if Circuits.GPIO.read(gpio) == 1, do: true, else: false
+    else
+      _ -> false
+    end
   end
 end
