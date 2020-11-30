@@ -41,7 +41,7 @@ defmodule NervesjpBasis.MixProject do
       {:nerves_pack, "~> 0.4.0", targets: @all_targets},
 
       # Dependencies for specific targets
-      {:nerves_system_rpi4, "~> 1.13", runtime: false, targets: :rpi4}
+      {:nerves_system_rpi4, "== 1.13.0", runtime: false, targets: :rpi4}
     ]
   end
 
