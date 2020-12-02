@@ -1,4 +1,6 @@
 defmodule NervesjpBasis.Application do
+  require Logger
+
   # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications
   @moduledoc false
@@ -7,8 +9,8 @@ defmodule NervesjpBasis.Application do
 
   def start(_type, _args) do
     if should_start_wizard?() do
-      VintageNetWizard.run_wizard()
-      wizard_running_led()
+      VintageNetWizard.run_wizard(on_exit: {__MODULE__, :wizard_running_led, [:off]})
+      wizard_running_led(:on)
     end
 
     # See https://hexdocs.pm/elixir/Supervisor.html
@@ -56,11 +58,19 @@ defmodule NervesjpBasis.Application do
     end
   end
 
-  defp wizard_running_led() do
+  def wizard_running_led(on_off) when is_atom(on_off) do
     pin_number = Application.get_env(:nervesjp_basis, :wizard_running_gpio_pin, 16)
 
     with {:ok, gpio} <- Circuits.GPIO.open(pin_number, :output) do
-      Circuits.GPIO.write(gpio, 1)
+      case on_off do
+        :on ->
+          Logger.info("start vintage net wizard")
+          Circuits.GPIO.write(gpio, 1)
+
+        :off ->
+          Logger.info("stop vintage net wizard")
+          Circuits.GPIO.write(gpio, 0)
+      end
     end
   end
 end
