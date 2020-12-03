@@ -36,6 +36,7 @@ defmodule NervesjpBasis.MixProject do
       {:ring_logger, "~> 0.8.1"},
       {:toolshed, "~> 0.2.13"},
       {:circuits_gpio, "~> 0.4"},
+      {:circuits_i2c, "~> 0.1"},
       {:vintage_net_wizard, "~> 0.1"},
 
       # Dependencies for all targets except :host
