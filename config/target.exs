@@ -93,7 +93,9 @@ config :mdns_lite,
     }
   ]
 
-config :vintage_net_wizard, captive_portal: false
+config :vintage_net_wizard,
+  captive_portal: false,
+  inactivity_timeout: 30
 
 # Import target specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
