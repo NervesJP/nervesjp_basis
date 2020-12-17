@@ -1,4 +1,4 @@
-defmodule Sensor.Aht20 do
+defmodule NervesjpBasis.Sensor.Aht20 do
   @moduledoc """
   Documentation for `Aht20`.
   温湿度センサAHT20の制御モジュール
@@ -25,35 +25,43 @@ defmodule Sensor.Aht20 do
   @doc """
   温度を表示
   ## Examples
-    iex> Aht20.temp
+    iex> Aht20.print_temp
     > temp (degree Celsius)
     22.1
     :ok
   """
-  def temp() do
+  def print_temp() do
+    IO.puts(" > temp: #{temp()} (degree Celsius)")
+  end
+
+  @doc """
+  温度の値を取得
+  """
+  defp temp do
     # AHT20から読み出し
-    # 返り値のタプルから温度の部分を取り出して表示
-    read_from_aht20()
-    |> elem(1)
-    |> elem(0)
-    |> (fn str -> IO.puts(" > temp: #{str} (degree Celsius)") end).()
+    {:ok, {temp, _}} = read_from_aht20()
+    temp
   end
 
   @doc """
   湿度を表示
   ## Examples
-    iex> Aht20.humi
+    iex> Aht20.print_humi
     > humi (%)
     41.2
     :ok
   """
-  def humi() do
+  def print_humi() do
+    IO.puts(" > humi: #{humi()} (%)")
+  end
+
+  @doc """
+  湿度の値を取得
+  """
+  defp humi do
     # AHT20から読み出し
-    # 返り値のタプルから湿度の部分を取り出して表示
-    read_from_aht20()
-    |> elem(1)
-    |> elem(1)
-    |> (fn str -> IO.puts(" > humi: #{str} (%))") end).()
+    {:ok, {_, humi}} = read_from_aht20()
+    humi
   end
 
   @doc """
@@ -100,7 +108,7 @@ defmodule Sensor.Aht20 do
     ## Parameters
     - val: POSTする内容
   """
-  def convert(src) do
+  defp convert(src) do
     # バイナリデータ部をバイト分割
     # <<0:state, 1:humi1, 2:humi2, 3:humi3/temp1, 4:temp2, 5:temp3, 6:crc>>
     <<_, h1, h2, ht3, t4, t5, _>> = src

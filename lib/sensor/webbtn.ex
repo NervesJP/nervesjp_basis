@@ -1,4 +1,4 @@
-defmodule Sensor.Webbtn do
+defmodule NervesjpBasis.Sensor.Webbtn do
   @moduledoc """
   Documentation for `Button`.
   WebAPI送信とボタン・LEDの連携
@@ -10,7 +10,7 @@ defmodule Sensor.Webbtn do
   require Logger
 
   alias Circuits.GPIO
-  alias Sensor.Web
+  alias NervesjpBasis.Sensor.Web
 
   # 定数
   # ボタン接続のBCM番号
@@ -48,7 +48,7 @@ defmodule Sensor.Webbtn do
     GPIO.write(state.led, 1)
     # データを送信
     Web.senddata()
-    # 500ms待機
+    # 待機（単位ms）
     Process.sleep(200)
     # LEDを消灯
     GPIO.write(state.led, 0)

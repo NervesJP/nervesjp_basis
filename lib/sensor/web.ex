@@ -1,10 +1,10 @@
-defmodule Sensor.Web do
+defmodule NervesjpBasis.Sensor.Web do
   @moduledoc """
   Documentation for `Web`.
   WebAPIとのやりとりモジュール
   """
 
-  alias Sensor.Aht20
+  alias NervesjpBasis.Sensor.Aht20
 
   # 定数
   ## ここの部分を、あなたのハンドル名に書き換えてください
@@ -51,7 +51,7 @@ defmodule Sensor.Web do
     - val: POSTする内容
     - url: POSTするAPIのURL
   """
-  def post(val, url) do
+  defp post(val, url) do
     HTTPoison.post!(url, body(val), header())
   end
 
@@ -60,7 +60,7 @@ defmodule Sensor.Web do
     ## Parameters
     - val: POSTする内容
   """
-  def body(val) do
+  defp body(val) do
     # 現在時刻を取得
     time =
       Timex.now()
@@ -73,7 +73,7 @@ defmodule Sensor.Web do
   @doc """
   ヘッダの生成
   """
-  def header() do
+  defp header() do
     [{"Content-type", "application/json"}]
   end
 end
