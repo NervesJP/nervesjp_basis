@@ -38,6 +38,10 @@ defmodule NervesjpBasis.MixProject do
       {:circuits_gpio, "~> 0.4"},
       {:circuits_i2c, "~> 0.1"},
       {:vintage_net_wizard, "~> 0.1"},
+      # for "aht20" hands on
+      {:httpoison, "~> 1.6"},
+      {:jason, "~> 1.2"},
+      {:timex, "~> 3.5"},
 
       # Dependencies for all targets except :host
       {:nerves_runtime, "~> 0.11.3", targets: @all_targets},
