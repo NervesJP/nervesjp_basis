@@ -45,7 +45,7 @@ defmodule NervesjpBasis.Sensor.Webbtn do
   """
   def handle_info({:circuits_gpio, @button, _timestamp, value}, state) do
     # LEDを点灯
-    GPIO.write(state.led, 1)
+    GPIO.write(state.led, value)
     # データを送信
     Web.senddata()
     # 待機（単位ms）
