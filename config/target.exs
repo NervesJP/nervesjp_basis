@@ -102,3 +102,5 @@ config :vintage_net_wizard,
 # Uncomment to use target specific configurations
 
 # import_config "#{Mix.target()}.exs"
+
+config :tzdata, :data_dir, "/data/tzdata"
