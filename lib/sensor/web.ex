@@ -23,13 +23,18 @@ defmodule NervesjpBasis.Sensor.Web do
     :ok
   """
   def senddata() do
-    # センサから温度を読み出し
-    {:ok, {temp, _}} = Aht20.read_from_aht20()
+    # センサから温度、湿度を読み出し
+    {:ok, {temp, humi}} = Aht20.read_from_aht20()
     # 現在値の表示
-    IO.puts(" > send: [name: #{@my_name}] / temp: #{inspect(temp)} (degree Celsius)")
+    IO.puts(
+      " > send: [name : #{@my_name}] / temp: #{inspect(temp)} (degree Celsius), humi: #{
+        inspect(humi)
+      } (%)"
+    )
 
     # WebAPIにPOSTする
     post(temp, @url_temp)
+    post(humi, @url_humi)
   end
 
   # 指定のURLにPOSTする
