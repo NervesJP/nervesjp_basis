@@ -34,9 +34,7 @@ defmodule NervesjpBasis.Sensor.Aht20 do
     IO.puts(" > temp: #{temp()} (degree Celsius)")
   end
 
-  @doc """
-  温度の値を取得
-  """
+  # 温度の値を取得
   defp temp do
     # AHT20から読み出し
     {:ok, {temp, _}} = read_from_aht20()
@@ -55,9 +53,7 @@ defmodule NervesjpBasis.Sensor.Aht20 do
     IO.puts(" > humi: #{humi()} (%)")
   end
 
-  @doc """
-  湿度の値を取得
-  """
+  # 湿度の値を取得
   defp humi do
     # AHT20から読み出し
     {:ok, {_, humi}} = read_from_aht20()
@@ -103,11 +99,9 @@ defmodule NervesjpBasis.Sensor.Aht20 do
     ret
   end
 
-  @doc """
-  生データを温度と湿度の値に変換
-    ## Parameters
-    - val: POSTする内容
-  """
+  #生データを温度と湿度の値に変換
+  ## Parameters
+  ## - val: POSTする内容
   defp convert(src) do
     # バイナリデータ部をバイト分割
     # <<0:state, 1:humi1, 2:humi2, 3:humi3/temp1, 4:temp2, 5:temp3, 6:crc>>

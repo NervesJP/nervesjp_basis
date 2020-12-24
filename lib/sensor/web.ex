@@ -32,21 +32,17 @@ defmodule NervesjpBasis.Sensor.Web do
     post(temp, @url_temp)
   end
 
-  @doc """
-  指定のURLにPOSTする
-    ## Parameters
-    - val: POSTする内容
-    - url: POSTするAPIのURL
-  """
+  # 指定のURLにPOSTする
+  ## Parameters
+  ## - val: POSTする内容
+  ## - url: POSTするAPIのURL
   defp post(val, url) do
     HTTPoison.post!(url, body(val), header())
   end
 
-  @doc """
-  JSONデータの生成
-    ## Parameters
-    - val: POSTする内容
-  """
+  # JSONデータの生成
+  ## Parameters
+  ## - val: POSTする内容
   defp body(val) do
     # 現在時刻を取得
     time =
@@ -57,9 +53,7 @@ defmodule NervesjpBasis.Sensor.Web do
     Jason.encode!(%{value: %{name: @my_name, value: val, time: time}})
   end
 
-  @doc """
-  ヘッダの生成
-  """
+  # ヘッダの生成
   defp header() do
     [{"Content-type", "application/json"}]
   end
