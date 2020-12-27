@@ -40,7 +40,7 @@ microSDカードに，ハンズオン向けのファームウェアを書き込�
 
 - [https://github.com/NervesJP/nervesjp_basis/releases/download/v1.0/nervesjp_basis.fw](https://github.com/NervesJP/nervesjp_basis/releases/download/v1.0/nervesjp_basis.fw)
 
-Windowsの方は，PowerShellまたはコマンドプロンプトを**「管理者として実行する」**で開いてください．MacやLinuxの方は普通にターミナルを開いてください．
+Windowsの方は，PowerShellまたはコマンドプロンプトを **「管理者として実行する」** で開いてください．MacやLinuxの方は普通にターミナルを開いてください．
 
 あとはこんな感じです．
 
@@ -56,5 +56,5 @@ fwup nervesjp_basis.fw
 
 ## その他の注意事項
 
-このリポジトリのNervesファームウェアは，今回のハンズオン向け（特にRasPi4向け）の固有の対応を幾つか行っていますす．ハンズオンの終了後には，その辺りを更新する予定です．
+このリポジトリのNervesファームウェアは，今回のハンズオン向け（特にRasPi4向け）の固有の対応を幾つか行っています．ハンズオンの終了後には，その辺りを更新する予定です．
 
