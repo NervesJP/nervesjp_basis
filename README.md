@@ -1,23 +1,18 @@
 # nervesjp_basis
-ALGYANハンズオンセミナ＠2020/12/27の配布用Nervesファームウェア
+ALGYANハンズオンセミナ＠2020/12/27のNervesアプリケーション
 
 - connpassイベントページ：[【オンライン】豪華プレゼント付！Elixir/Nerves(ナーブス)体験ハンズオン！](https://algyan.connpass.com/event/197306/)
 
-## プレゼント枠の皆さまへ
+## ハンズオンのテキスト
 
-超豪華なプレゼント！とともに，ファームウェアを書込み済みのmicroSDカードをお届けします．はやる気持ちを抑えて当日までお待ちください．もちろんmicroSDは初期化などしないでください^^;
+- [基本編：まずはNervesをとにかく動かしてみよう！](https://docs.google.com/presentation/d/1u7V6aR0wrWs23oGmNq6Scl6M_WRpa0eyB4lSqyOsbRM/edit?usp=sharing)
+- [応用編：これぞ一気通貫のIoT！Nervesアプリをビルドして動かしてみよう](https://docs.google.com/presentation/d/1ybBMKVnYnImRv1V_vozVXTOt-DwfpUiAwqhrNSubt3k/edit?usp=sharing)
 
-書込み済みのファームウェアは，今回のハンズオン向けの開発環境 `nerves-algyan-devcontainer` で作業することを前提にしています．下記に従って準備を進めておいてください．
+- [動画アーカイブ(YouTube)](https://youtu.be/A1AiQZR7UFQ)
 
-- [ALGYAN x Seeed x NervesJPハンズオン！に向けた開発環境の準備方法](https://qiita.com/takasehideki/items/79d4ba3f95b1463105f8)
+[connpassイベントページの資料一覧](https://algyan.connpass.com/event/197306/presentation/)もご参照ください．
 
-## 見学枠の皆さまへ
-
-特に，「見学枠」だけど見てるだけ〜とは言ってないよ〜という方向けの案内です．  
-
-### 必要なもの
-
-まずは，下記のアイテムをご用意ください．
+## 必要なもの
 
 - RasPi4 4GBモデル
 - [Grove Base HAT for RasPi](https://jp.seeedstudio.com/Grove-Base-Hat-for-Raspberry-Pi.html)
@@ -27,34 +22,49 @@ ALGYANハンズオンセミナ＠2020/12/27の配布用Nervesファームウェ�
 - AC-DCアダプタ（Type-C, 5V3A）
 - microSDカード（16GBくらいあればよい）
 
-Grove Buttonは(P)じゃなくても構いません．また，LEDも緑じゃなくてよいです．AHT20 I2Cはあまり国内流通が無いようで，Seeed BazzarかDigi-Key辺りが良いかと思います．発送まで１週間ほど掛かりますので，早めに手配しましょう．
+Grove Buttonは(P)じゃなくても構いません．また，LEDも緑じゃなくてよいです．AHT20 I2Cはあまり国内流通が無いようで，Seeed BazzarかDigi-Key辺りが良いかと思います．また，発送まで１週間ほど掛かります．
 
-このリポジトリのNervesファームウェアは，今回のハンズオン向けにRasPi4に特化して用意しています．他のRasPiボードで臨みたい方は，[ NervesJPのSlack ](https://nerves-jp.connpass.com/)か，[ このリポジトリのIssue ](https://github.com/NervesJP/nervesjp_basis/issues)にて事前にご相談ください．
+このリポジトリのNervesファームウェアは，今回のハンズオン向けにRasPi4に特化して用意しています．他のRasPiボードで臨みたい方は，[ NervesJPのSlack ](https://nerves-jp.connpass.com/)か，[ このリポジトリのIssue ](https://github.com/NervesJP/nervesjp_basis/issues)にてご相談ください．
 
-### microSDカードの準備
+## microSDカードの準備
 
-まずはもちろん，[「ALGYAN x Seeed x NervesJPハンズオン！に向けた開発環境の準備方法」](https://qiita.com/takasehideki/items/79d4ba3f95b1463105f8)に従って開発環境を準備してください．特に「fwupのインストール」が大事です．
+まずはElixir/Nervesの開発環境をご用意ください．
 
-microSDカードに，ハンズオン向けのファームウェアを書き込む必要があります．  
-下記からファームウェアをダウンロードしてください．
+ハンズオン本番向けに用意したものは，開発環境の統一と手順の簡単化のために，幾つかのcheatをしています．特にSSH通信用の鍵は共通化しているため，セキュリティ上のリスクがあります．以下のいずれかの環境を構築して使用してください．
 
-- [https://github.com/NervesJP/nervesjp_basis/releases/download/v1.0/nervesjp_basis.fw](https://github.com/NervesJP/nervesjp_basis/releases/download/v1.0/nervesjp_basis.fw)
+- dev-containerを使用する開発環境：[ElixirでIoT#4.1.2：[使い方篇] Docker(とVS Code)だけ！でNerves開発環境を整備する - Qiita](https://qiita.com/takasehideki/items/27005ba9c0d9eb693ea9)
+- WSL 2のみを使用する開発環境（上記よりビルド性能が良い，ただし難易度がある）：[ElixirでIoT#4.1.1：WSL 2でNerves開発環境を整備する - Qiita](https://qiita.com/takasehideki/items/b8ea8b3455c70398178a)
+- macOSやLinux向けのネイティブな開発環境：[ElixirでIoT#4.1：Nerves開発環境の準備 - Qiita](https://qiita.com/takasehideki/items/88dda57758051d45fcf9)
 
-Windowsの方は，PowerShellまたはコマンドプロンプトを **「管理者として実行する」** で開いてください．MacやLinuxの方は普通にターミナルを開いてください．
 
-あとはこんな感じです．
+最初からやり直したい！自分のSSH鍵で準備してやるぞっ！という方は，下記を実行してファームウェアを作成してください．
 
-1. ターミナルでファームウェアをダウンロードしてきたところに移動する
-2. microSDカードをPCに接続する
-3. 下記のコマンドを実行する
-
-```bash
-fwup nervesjp_basis.fw
+```shell-session
+$ git clone https://github.com/NervesJP/nervesjp_basis
+$ cd nervesjp_basis
+$ git checkout v1.0
+$ export MIX_TARGET=rpi4
+$ mix deps.get
+$ mix firmware
 ```
 
-あとは当日をお楽しみにっ！！
+`_build/rpi4_dev/nerves/images/nervesjp_basis.fw` というのがハンズオンのスタートラインとなっているNervesファームウェアです．こちらをmicroSDカードに書き込みます．
 
-## その他の注意事項
+dev-containerの方は，ホストPC上で，`fwup`を実行します．    
+Windowsの方は，PowerShellまたはコマンドプロンプトを **「管理者として実行する」** で開いて，MacやLinuxの方は普通にターミナルを開いて，下記を実行してください．
 
-このリポジトリのNervesファームウェアは，今回のハンズオン向け（特にRasPi4向け）の固有の対応を幾つか行っています．ハンズオンの終了後には，その辺りを更新する予定です．
+```shell-session
+$ fwup _build/rpi4_dev/nerves/images/nervesjp_basis.fw
+```
+
+WSL 2やmacOSでネイティブに環境構築された方は，これだけです．
+
+```shell-session
+$ mix burn
+```
+
+## [Release](https://github.com/NervesJP/nervesjp_basis/releases)履歴
+
+- v1.0: ALGYANハンズオン向けの参加者に配布したファームウェアのバージョン
+- v1.1: 応用編の内容込みのバージョン
 
