@@ -103,16 +103,14 @@ defmodule NervesjpBasis.Sensor.Aht20 do
   ## Parameters
   ## - val: POSTする内容
   defp convert(src) do
-    # バイナリデータ部をバイト分割
+    # バイナリデータ部をビット長でパターンマッチ
     # <<0:state, 1:humi1, 2:humi2, 3:humi3/temp1, 4:temp2, 5:temp3, 6:crc>>
-    <<_, h1, h2, ht3, t4, t5, _>> = src
+    <<_state::8, raw_humi::20, raw_temp::20, _crc::8>> = src
 
     # 湿度に換算する計算（データシートの換算方法に準じた）
-    raw_humi = h1 <<< 12 ||| h2 <<< 4 ||| ht3 >>> 4
     humi = Float.round(raw_humi / @two_pow_20 * 100.0, 1)
 
     # 温度に換算する計算（データシートの換算方法に準じた）
-    raw_temp = (ht3 &&& 0x0F) <<< 16 ||| t4 <<< 8 ||| t5
     temp = Float.round(raw_temp / @two_pow_20 * 200.0 - 50.0, 1)
 
     # 温度と湿度をタプルにして返す
