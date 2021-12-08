@@ -11,9 +11,8 @@ defmodule NervesjpBasis.Sensor.Web do
   @my_name "nervesjp_algyan"
 
   # 定数
-  ## Web APi
-  @url_temp "https://phx.japaneast.cloudapp.azure.com/temperatures"
-  @url_humi "https://phx.japaneast.cloudapp.azure.com/humidities"
+  ## Web API
+  @url_value "https://nervesjp-dsf2021.japaneast.cloudapp.azure.com/values"
 
   @doc """
   測定データを打ち上げ
@@ -24,33 +23,32 @@ defmodule NervesjpBasis.Sensor.Web do
   """
   def senddata() do
     # センサから温度を読み出し
-    {:ok, {temp, _}} = Aht20.read_from_aht20()
+    {:ok, {temp, humi}} = Aht20.read_from_aht20()
     # 現在値の表示
-    IO.puts(" > send: [name: #{@my_name}] / temp: #{inspect(temp)} (degree Celsius)")
+    IO.puts(
+      " > send: [name : #{@my_name}] / temp: #{inspect(temp)} (degree Celsius), humi: #{
+        inspect(humi)
+      } (%)"
+    )
 
     # WebAPIにPOSTする
-    post(temp, @url_temp)
+    post(temp, humi, @url_value)
   end
 
   # 指定のURLにPOSTする
   ## Parameters
-  ## - val: POSTする内容
+  ## - temp, humi: POSTする内容
   ## - url: POSTするAPIのURL
-  defp post(val, url) do
-    HTTPoison.post!(url, body(val), header())
+  defp post(temp, humi, url) do
+    HTTPoison.post!(url, body(temp, humi), header())
   end
 
   # JSONデータの生成
   ## Parameters
-  ## - val: POSTする内容
-  defp body(val) do
-    # 現在時刻を取得
-    time =
-      Timex.now()
-      |> Timex.to_unix()
-
+  ## - temp, humi: POSTする内容
+  defp body(temp, humi) do
     # JSONに変換
-    Jason.encode!(%{value: %{name: @my_name, value: val, time: time}})
+    Jason.encode!(%{value: %{name: @my_name, temperature: temp, humidity: humi}})
   end
 
   # ヘッダの生成

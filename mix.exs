@@ -41,7 +41,6 @@ defmodule NervesjpBasis.MixProject do
       # for "aht20" hands on
       {:httpoison, "~> 1.6"},
       {:jason, "~> 1.2"},
-      {:timex, "~> 3.5"},
 
       # Dependencies for all targets except :host
       {:nerves_runtime, "~> 0.11.3", targets: @all_targets},
