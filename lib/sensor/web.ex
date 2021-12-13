@@ -12,7 +12,7 @@ defmodule NervesjpBasis.Sensor.Web do
 
   # 定数
   ## Web API
-  @url_value "https://nervesjp-dsf2021.japaneast.cloudapp.azure.com/values"
+  @url_value "https://nervesjp-wwest2021.japaneast.cloudapp.azure.com/values"
 
   @doc """
   測定データを打ち上げ
